@@ -1,24 +1,25 @@
 const express = require('express');
 const router = express.Router();
+const {
+  getAllTasks,
+  createTask,
+  getSingleTask,
+  updateTask,
+  deleteTask,
+} = require('../controllers/tasks');
 
-router.get('/api/v1/tasks', (req, res) => {
-  res.send('タスクを全て取得しました');
-});
+// router.get('/', (req, res) =>{
+// res.send('タスクを全て取得しました');
+// })
 
-router.get('/api/v1/tasks/:id', (req, res) => {
-  res.send(`${req.params.id}タスクを取得しました`);
-});
+router.get('/', getAllTasks);
 
-router.patch('/api/v1/tasks/:id', (req, res) => {
-  res.send(`${req.params.id}タスクを更新しました`);
-});
+router.get('/:id', getSingleTask);
 
-router.delete('/api/v1/tasks/:id', (req, res) => {
-  res.send(`${req.params.id}タスクを削除しました`);
-});
+router.post('/', createTask);
 
-router.post('/api/v1/tasks', (req, res) => {
-  res.send('タスクを新規作成しました');
-});
+router.patch('/:id', updateTask);
+
+router.delete('/:id', deleteTask);
 
 module.exports = router;
