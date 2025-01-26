@@ -4,6 +4,7 @@ const port = 5010;
 const taskRoute = require('./routes/tasks');
 const connectDB = require('./db/connect');
 require('dotenv').config();
+app.use(express.json());
 
 //ルーティング設定
 app.use('/api/v1/tasks', taskRoute);
