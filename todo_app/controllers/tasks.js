@@ -31,11 +31,36 @@ const getSingleTask = async (req, res) => {
 };
 
 const updateTask = async (req, res) => {
-  res.send(`${req.params.id}タスクを更新しました`);
+  try {
+    const updateTask = await Task.findOneAndUpdate(
+      { _id: req.params.id },
+      req.body,
+      {
+        returnDocument: 'after',
+        // new: true,
+      }
+    ).exec();
+    if (!updateTask) {
+      return res.status(404).json(`_id:${req.params.id}は存在しません`);
+    }
+    res.status(200).json(updateTask);
+  } catch (error) {
+    res.status(500).json(error);
+  }
 };
 
 const deleteTask = async (req, res) => {
-  res.send(`${req.params.id}タスクを削除しました`);
+  try {
+    const deleteTask = await Task.findOneAndDelete({
+      _id: req.params.id,
+    }).exec();
+    if (!deleteTask) {
+      return res.status(404).json(`_id:${req.params.id}は存在しません`);
+    }
+    res.status(200).json(deleteTask);
+  } catch (error) {
+    res.status(500).json(error);
+  }
 };
 
 module.exports = {
