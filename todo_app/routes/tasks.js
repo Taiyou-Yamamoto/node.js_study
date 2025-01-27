@@ -14,9 +14,9 @@ const {
 
 router.get('/', getAllTasks);
 
-router.get('/:id', getSingleTask);
-
 router.post('/', createTask);
+
+router.get('/:id', getSingleTask);
 
 router.patch('/:id', updateTask);
 
