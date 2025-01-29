@@ -69,5 +69,4 @@ module.exports = {
   getSingleTask,
   updateTask,
   deleteTask,
-  //
 };
